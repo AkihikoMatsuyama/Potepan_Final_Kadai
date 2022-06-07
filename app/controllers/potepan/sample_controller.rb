@@ -46,4 +46,8 @@ class Potepan::SampleController < ApplicationController
 
   def privacy_policy
   end
+
+  def products
+    @product = Spree::Product.find(params[:id])
+  end
 end

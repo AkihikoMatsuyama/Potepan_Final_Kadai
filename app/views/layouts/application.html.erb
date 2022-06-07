@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Potepanec</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +9,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="main-wrapper">
+      <%= render 'shared/com_header' %>
+      <%= yield %>
+      <%= render 'shared/com_footer' %>
+    </div>
   </body>
 </html>

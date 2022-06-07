@@ -1,0 +1,14 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+#以下にはrubocopで検証したくないフォルダを指定する
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'bin/*'
+    - 'vendor/**/*'
+    - 'config/initializers/*'
+    - 'config/environments/*'
+    - 'config/spring.rb'
+    - 'spec/spec_helper.rb'
