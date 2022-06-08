@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <!-- SITE TITTLE -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +55,7 @@
               <div id="carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <% @product.variant_images.each_with_index do |image, i| %>
-                    <div class="item <%= 'active' if i == 0 %>" data-thumb="<%= i %>">
+                    <div class="item <%= 'active' if i.zero? %>" data-thumb="<%= i %>">
                       <%= image_tag image.attachment.url %>
                     </div>
                   <% end %>
@@ -83,10 +82,9 @@
             <div class="media-body">
               <ul class="list-inline">
                 <li><a href="product_grid_left_sidebar.html"><i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る</a></li>
-                <!-- <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li> -->
               </ul>
               <h2><%= @product.name %></h2>
-              <h3><%= number_to_currency(@product.price) %></h3>
+              <h3>&#36;<%= @product.prices.where(currency: "USD").first.amount %></h3>
               <p><%= @product.description %></p>
               <span class="quick-drop">
                 <select name="guiest_id3" id="guiest_id3" class="select-drop">
@@ -98,7 +96,6 @@
               </span>
               <span class="quick-drop resizeWidth">
                 <select name="guiest_id4" id="guiest_id4" class="select-drop">
-                <!--   <option value="0">Qty</option> -->
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -107,34 +104,6 @@
               <div class="btn-area">
                 <a href="cart_page.html" class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></a>
               </div>
-              <!-- <div class="tabArea">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a data-toggle="tab" href="#details">details</a></li>
-                  <li><a data-toggle="tab" href="#about-art">about art</a></li>
-                  <li><a data-toggle="tab" href="#sizing">sizing</a></li>
-                  <li><a data-toggle="tab" href="#shipping">shipping</a></li>
-                </ul>
-                <div class="tab-content">
-                  <div id="details" class="tab-pane fade in active">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <ul class="list-unstyled">
-                      <li>Black, Crew Neck</li>
-                      <li>75% Cotton, 25% Rayon</li>
-                      <li>Waterbased Ink</li>
-                      <li>Wash Cold, dry low</li>
-                    </ul>
-                  </div>
-                  <div id="about-art" class="tab-pane fade">
-                    <p>Nulla facilisi. Mauris efficitur, massa et iaculis accumsan, mauris velit ultrices purus, quis condimentum nibh dolor ut tortor. Donec egestas tortor quis mattis gravida. Ut efficitur elit vitae dignissim volutpat. </p>
-                  </div>
-                  <div id="sizing" class="tab-pane fade">
-                    <p>Praesent dui felis, gravida a auctor at, facilisis commodo ipsum. Cras eu faucibus justo. Nullam varius cursus nisi, sed elementum sem sagittis at. Nulla tellus massa, vestibulum a commodo facilisis, pulvinar convallis nunc.</p>
-                  </div>
-                  <div id="shipping" class="tab-pane fade">
-                    <p>Mauris lobortis augue ex, ut faucibus nisi mollis ac. Sed volutpat scelerisque ex ut ullamcorper. Cras at velit quis sapien dapibus laoreet a id odio. Sed sit amet accumsan ante, eu congue metus. Aenean eros tortor, cursus quis feugiat sed, vestibulum vel purus.</p>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -151,8 +120,8 @@
               <%= image_tag("img/products/products-01.jpg", :alt => "products-img") %>
             </div>
             <div class="productCaption clearfix">
-             <h5>Nike Sportswear</h5>
-             <h3>199円</h3>
+              <h5>Nike Sportswear</h5>
+              <h3>199円</h3>
             </div>
           </div>
         </div>
@@ -162,8 +131,8 @@
               <%= image_tag("img/products/products-02.jpg", :alt => "products-img") %>
             </div>
             <div class="productCaption clearfix">
-             <h5>Dip Dyed Sweater</h5>
-             <h3>249円</h3>
+              <h5>Dip Dyed Sweater</h5>
+              <h3>249円</h3>
             </div>
           </div>
         </div>
@@ -173,8 +142,8 @@
               <%= image_tag("img/products/products-03.jpg", :alt => "products-img") %>
             </div>
             <div class="productCaption clearfix">
-             <h5>Scarf Ring Corner</h5>
-             <h3>179円</h3>
+              <h5>Scarf Ring Corner</h5>
+              <h3>179円</h3>
             </div>
           </div>
         </div>
@@ -184,8 +153,8 @@
               <%= image_tag("img/products/products-04.jpg", :alt => "products-img") %>
             </div>
             <div class="productCaption clearfix">
-             <h5>Sun Buddies</h5>
-             <h3>149円</h3>
+              <h5>Sun Buddies</h5>
+              <h3>149円</h3>
             </div>
           </div>
         </div>
