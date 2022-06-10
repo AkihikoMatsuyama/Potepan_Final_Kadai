@@ -4,12 +4,11 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe "ページタイトル" do
     it "1.トップページのタイトルは、BIGBAG Storeになる" do
       expect(full_title("")).to eq 'BIGBAG Store'
+      expect(full_title(nil)).to eq 'BIGBAG Store'
     end
 
-    page_title = 'テスト'.freeze
-    base_title = 'BIGBAG Store'.freeze
-    it "2.商品詳細のタイトルは、タイトル - BIGBAG Storeになる" do
-      expect(full_title(page_title)).to eq("#{page_title} - #{base_title}")
+    it "2.商品詳細ページのタイトルは、商品名がテストの場合、テスト - BIGBAG Storeになる" do
+      expect(full_title("テスト")).to eq 'テスト - BIGBAG Store'
     end
   end
 end
