@@ -21,7 +21,7 @@ RSpec.describe "Potepan::Products", type: :request do
     end
 
     it "商品の値段が表示されること（ドルマーク付き）" do
-      expect(response.body).to include product.prices.where(currency: "USD").first.money.to_s
+      expect(response.body).to include product.display_price.to_s
     end
 
     it "商品の画像が表示されること" do
