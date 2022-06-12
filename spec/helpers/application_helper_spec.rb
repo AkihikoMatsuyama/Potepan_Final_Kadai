@@ -7,8 +7,9 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(full_title(nil)).to eq 'BIGBAG Store'
     end
 
-    it "商品詳細ページのタイトルは、商品名がテストの場合、テスト - BIGBAG Storeになる" do
-      expect(full_title("テスト")).to eq 'テスト - BIGBAG Store'
+    product_name = SecureRandom.alphanumeric(8)
+    it "商品詳細ページのタイトルは、商品名が#{product_name}の場合、#{product_name} - BIGBAG Storeになる" do
+      expect(full_title(product_name)).to eq("#{product_name} - BIGBAG Store")
     end
   end
 end
