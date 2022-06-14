@@ -3,8 +3,14 @@ require 'rails_helper'
 RSpec.describe "Potepan::Products", type: :request do
   describe "商品詳細ページ" do
     let(:product) { create(:product) }
+    let(:image) { create(:image) }
+    let!(:filename) {
+      filename = image.attachment_blob.filename
+      "#{filename.base}#{filename.extension_with_delimiter}"
+    }
 
     before do
+      product.images << image
       get potepan_product_path(product.id)
     end
 
@@ -24,8 +30,8 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response.body).to include product.display_price.to_s
     end
 
-    it "商品の画像が表示されること" do
-      expect(response.body).to include product.images.last.to_s
+    it "商品画像のファイルが生成されること" do
+      expect(response.body).to include filename
     end
   end
 end
