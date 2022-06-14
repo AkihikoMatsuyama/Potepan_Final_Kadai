@@ -30,7 +30,7 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response.body).to include product.display_price.to_s
     end
 
-    it "商品画像のファイルが生成されること" do
+    it "商品画像のファイル名が生成されること" do
       expect(response.body).to include filename
     end
   end
