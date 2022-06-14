@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
-  describe "full_title(product_name)" do
+  describe "#full_title(product_name)" do
     subject { helper.full_title(product_name) }
 
     context "product_nameが空白の場合のページタイトルは、BIGBAG Storeになる" do
