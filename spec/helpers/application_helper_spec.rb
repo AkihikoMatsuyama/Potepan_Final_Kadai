@@ -6,16 +6,19 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context "product_nameが空白の場合のページタイトルは、BIGBAG Storeになる" do
       let(:product_name) { '' }
+
       it { is_expected.to eq 'BIGBAG Store' }
     end
 
     context "product_nameがnilの場合のページタイトルは、BIGBAG Storeになる" do
       let(:product_name) { nil }
+
       it { is_expected.to eq 'BIGBAG Store' }
     end
 
     context "product_nameがテストの場合のページタイトルは、テスト - BIGBAG Storeになる" do
       let(:product_name) { 'テスト' }
+
       it { is_expected.to eq "#{product_name} - BIGBAG Store" }
     end
   end
