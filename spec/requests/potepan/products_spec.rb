@@ -4,7 +4,7 @@ RSpec.describe "Potepan::Products", type: :request do
   describe "商品詳細ページ" do
     let(:product) { create(:product) }
     let(:image) { create(:image) }
-    let!(:filename) {
+    let(:filename) {
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     }
