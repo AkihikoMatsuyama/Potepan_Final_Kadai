@@ -4,22 +4,28 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe "#full_title(product_name)" do
     subject { helper.full_title(product_name) }
 
-    context "product_nameが空白の場合のページタイトルは、BIGBAG Storeになる" do
+    context "product_nameが空白の場合" do
       let(:product_name) { '' }
 
-      it { is_expected.to eq 'BIGBAG Store' }
+      it "BIGBAG Storeになる" do
+        is_expected.to eq 'BIGBAG Store'
+      end
     end
 
-    context "product_nameがnilの場合のページタイトルは、BIGBAG Storeになる" do
+    context "product_nameがnilの場合" do
       let(:product_name) { nil }
 
-      it { is_expected.to eq 'BIGBAG Store' }
+      it "BIGBAG Storeになる" do
+        is_expected.to eq 'BIGBAG Store'
+      end
     end
 
-    context "product_nameがテストの場合のページタイトルは、テスト - BIGBAG Storeになる" do
+    context "product_nameがテストの場合" do
       let(:product_name) { 'テスト' }
 
-      it { is_expected.to eq "#{product_name} - BIGBAG Store" }
+      it "テスト - BIGBAG Storeになる" do
+        is_expected.to eq "#{product_name} - BIGBAG Store"
+      end
     end
   end
 end
