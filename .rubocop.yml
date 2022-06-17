@@ -1,0 +1,13 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'bin/*'
+    - 'vendor/**/*'
+    - 'config/initializers/*'
+    - 'config/environments/*'
+    - 'config/spring.rb'
+    - 'spec/spec_helper.rb'
