@@ -1,25 +1,25 @@
 <!-- LIGHT SECTION -->
 <section class="lightSection clearfix pageHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="page-title">
-            <h2><%= @taxon.name %></h2>
-          </div>
-        </div>
-        <div class="col-xs-6">
-          <ol class="breadcrumb pull-right">
-            <li>
-              <%= link_to 'Home', potepan_path %>
-            </li>
-            <li>
-              <%= link_to 'shop', '#' %>
-            </li>
-            <li class="active"><%= @taxon.name %></li>
-          </ol>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2><%= @taxon.name %></h2>
         </div>
       </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li>
+            <%= link_to 'Home', potepan_path %>
+          </li>
+          <li>
+            <%= link_to 'shop', '#' %>
+          </li>
+          <li class="active"><%= @taxon.name %></li>
+        </ol>
+      </div>
     </div>
+  </div>
 </section>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
@@ -49,21 +49,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="panel panel-default priceRange">
-                <div class="panel-heading">値段から探す</div>
-                <div class="panel-body clearfix">
-                  <div class="price-slider-inner">
-                    <span class="amount-wrapper">
-                      <input type="text" id="price-amount-1" readonly>
-                      <strong>-</strong>
-                      <input type="text" id="price-amount-2" readonly>
-                    </span>
-                    <div id="price-range"></div>
-                  </div>
-                  <input class="btn btn-default" type="submit" value="絞り込む">
-                  <!-- <span class="priceLabel">Price: <strong>12 円- 30<円/strong></span>
-                </div>
-              </div> -->
               <div class="panel panel-default filterNormal">
                 <div class="panel-heading">色から探す</div>
                 <div class="panel-body">
