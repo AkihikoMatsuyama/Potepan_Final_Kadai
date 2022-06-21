@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Potepan::Categories", type: :feature do
   given(:taxonomy) { create(:taxonomy) }
   given(:taxon) { create(:taxon, taxonomy: taxonomy) }
-  given(:product) { create(:product, taxons: [taxon]) } 
+  given(:product) { create(:product, taxons: [taxon]) }
   given(:image) { create(:image) }
 
   background do
