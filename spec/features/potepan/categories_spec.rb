@@ -11,7 +11,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
     visit potepan_category_path(taxon.id)
   end
 
-  scenario "メインページ側の商品をクリックすると、商品詳細ページに遷移すること" do
+  scenario "カテゴリー一覧ページの商品をクリックすると、商品詳細ページに遷移すること" do
     click_on product.name
     expect(page).to have_current_path potepan_product_path(product.id)
   end
