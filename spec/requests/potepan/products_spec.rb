@@ -5,7 +5,6 @@ RSpec.describe "Potepan::Products", type: :request do
     let(:taxonomy) { create(:taxonomy) }
     let(:taxon) { create(:taxon, taxonomy: taxonomy) }
     let(:product) { create(:product, taxons: [taxon]) }
-    # let(:product) { create(:product) }
     let(:image) { create(:image) }
     let(:filename) {
       filename = image.attachment_blob.filename
