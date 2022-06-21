@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :request do
   describe "商品詳細ページ" do
-    let(:product) { create(:product) }
+    let(:taxonomy) { create(:taxonomy) }
+    let(:taxon) { create(:taxon, taxonomy: taxonomy) }
+    let(:product) { create(:product, taxons: [taxon]) }
+    # let(:product) { create(:product) }
     let(:image) { create(:image) }
     let(:filename) {
       filename = image.attachment_blob.filename
