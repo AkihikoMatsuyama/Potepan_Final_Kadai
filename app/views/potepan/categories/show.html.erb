@@ -36,10 +36,10 @@
                   <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#<%= taxonomy.name %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
                     <ul id="<%= taxonomy.name %>" class="collapse collapseItem">
-                      <% taxonomy.leaves.each do |taxon| %>
+                      <% taxonomy.leaves.includes(:products).each do |taxon| %>
                         <li>
                           <%= link_to potepan_category_path(taxon.id) do %>
-                            <i class="fa fa-caret-right" aria-hidden="true"></i><%= taxon.name %> <span>(<%=taxon.products.count %>)</span>
+                            <i class="fa fa-caret-right" aria-hidden="true"></i><%= taxon.name %> <span>(<%=taxon.products.size %>)</span>
                           <% end %>
                         </li>
                       <% end %>
