@@ -16,9 +16,11 @@ RSpec.feature "Potepan::Categories", type: :feature do
     expect(page).to have_current_path potepan_product_path(product.id)
   end
 
-  scenario "サイドバーの商品をクリックすると、カテゴリーページに遷移すること" do
-    click_link taxon.name
-    expect(page).to have_current_path potepan_category_path(taxon.id)
+  scenario "サイドバーの商品をクリックすると、サイドバーの商品ページに遷移すること" do
+    within("ul.side-nav") do
+      click_link taxon.name
+      expect(page).to have_current_path potepan_category_path(taxon.id)
+    end
   end
 
   scenario "サイドバーにカテゴリー名が表示出来ていること" do
