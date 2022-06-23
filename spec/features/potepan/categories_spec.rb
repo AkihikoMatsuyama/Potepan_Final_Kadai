@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Potepan::Categories", type: :feature do
-  given(:taxonomy) { create(:taxonomy) }
-  given(:taxon) { create(:taxon, taxonomy: taxonomy) }
+  given(:taxonomy) { create(:taxonomy, name: "Categories") }
+  given!(:taxonomy2) { create(:taxonomy, name: "Drinks") }
+  given(:taxon) { create(:taxon, name: 'Hoodie', taxonomy: taxonomy) }
+  given!(:taxon2) { create(:taxon, name: 'Milk', taxonomy: taxonomy2) }
   given(:product) { create(:product, taxons: [taxon]) }
   given(:image) { create(:image) }
 
@@ -17,8 +19,11 @@ RSpec.feature "Potepan::Categories", type: :feature do
   end
 
   scenario "サイドバーの商品をクリックすると、サイドバーの商品ページに遷移すること" do
+    visit potepan_category_path(taxon2.id)
+    expect(page).to have_current_path potepan_category_path(taxon2.id)
     within("ul.side-nav") do
       click_link taxon.name
+      visit potepan_category_path(taxon.id)
       expect(page).to have_current_path potepan_category_path(taxon.id)
     end
   end
@@ -27,6 +32,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
     within("ul.side-nav") do
       expect(page).to have_content taxonomy.name
       expect(page).to have_content taxon.name
+      expect(page).to have_content taxon2.name
     end
   end
 
