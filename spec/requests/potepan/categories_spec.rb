@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "Potepan::Categories", type: :request do
   describe "カテゴリ一の一覧ページ" do
     let(:taxonomy) { create(:taxonomy, name: "Categories") }
-    let(:taxonomy2) { create(:taxonomy, name: "Drinks") }
+    let!(:taxonomy2) { create(:taxonomy, name: "Drinks") }
     let(:taxon) { create(:taxon, name: 'Hoodie', taxonomy: taxonomy) }
-    let(:taxon2) { create(:taxon, name: 'Milk', taxonomy: taxonomy2) }
+    let!(:taxon2) { create(:taxon, name: 'Milk', taxonomy: taxonomy2) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
     let(:filename) {
@@ -26,16 +26,16 @@ RSpec.describe "Potepan::Categories", type: :request do
       expect(response.body).to include taxonomy.name
     end
 
-    it "Drinksが表示されていないこと" do
-      expect(response.body).not_to include taxonomy2.name
+    it "Drinksが表示されていること" do
+      expect(response.body).to include taxonomy2.name
     end
 
     it "Hoodieが表示されていること" do
       expect(response.body).to include taxon.name
     end
 
-    it "Milkが表示されていないこと" do
-      expect(response.body).not_to include taxon2.name
+    it "Milkが表示されていること" do
+      expect(response.body).to include taxon2.name
     end
 
     it "商品の値段が表示されること（ドルマーク付き）" do
