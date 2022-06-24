@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Potepan::Categories", type: :feature do
-  given(:taxonomy) { create(:taxonomy, name: "Categories") }
+  given!(:taxonomy) { create(:taxonomy, name: "Categories") }
   given!(:taxonomy2) { create(:taxonomy, name: "Drinks") }
-  given(:taxon) { create(:taxon, name: 'Hoodie', taxonomy: taxonomy) }
+  given!(:taxon) { create(:taxon, name: 'Hoodie', taxonomy: taxonomy, parent_id: taxonomy.root.id) }
   given!(:taxon2) { create(:taxon, name: 'Milk', taxonomy: taxonomy2) }
-  given(:product) { create(:product, taxons: [taxon]) }
+  given!(:product) { create(:product, taxons: [taxon]) }
   given(:image) { create(:image) }
 
   background do
@@ -23,9 +23,8 @@ RSpec.feature "Potepan::Categories", type: :feature do
     expect(page).to have_current_path potepan_category_path(taxon2.id)
     within("ul.side-nav") do
       click_link taxon.name
-      visit potepan_category_path(taxon.id)
-      expect(page).to have_current_path potepan_category_path(taxon.id)
     end
+    expect(page).to have_current_path potepan_category_path(taxon.id)
   end
 
   scenario "サイドバーにカテゴリー名が表示出来ていること" do
