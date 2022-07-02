@@ -42,15 +42,15 @@ RSpec.describe "Potepan::Products", type: :request do
     end
 
     it "関連商品名が表示されること" do
-      expect(css_select('.productBox').text).to include related_product.first.name
+      expect(css_select(".productBox").text).to include related_product.first.name
     end
 
     it "関連商品の値段が表示されること（ドルマーク付き）" do
-      expect(css_select('.productBox').text).to include related_product.first.display_price.to_s
+      expect(css_select(".productBox").text).to include related_product.first.display_price.to_s
     end
 
     it "関連商品の画像が表示されること" do
-      expect(css_select('.productBox').inner_html).to include filename
+      expect(css_select(".productBox").inner_html).to include filename
     end
   end
 end
