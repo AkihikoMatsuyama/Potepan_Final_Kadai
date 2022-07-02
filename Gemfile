@@ -50,7 +50,6 @@ group :development, :test do
   gem 'annotate'
   gem 'rubocop-airbnb'
   gem 'capybara'
-  gem 'active_decorator'
 end
 
 group :development do
