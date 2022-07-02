@@ -24,9 +24,9 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
 
     it "関連商品が最大4つになること" do
       expect(product.relation_products.count).to eq 5
-      expect(product.relation_products.limit!(4).count).to be_between(1, 4).inclusive
+      expect(product.relation_products.limit(4).count).to be_between(1, 4).inclusive
       expect(product2.relation_products.count).to eq 2
-      expect(product2.relation_products.limit!(4).count).to be_between(1, 4).inclusive
+      expect(product2.relation_products.limit(4).count).to be_between(1, 4).inclusive
     end
   end
 end
