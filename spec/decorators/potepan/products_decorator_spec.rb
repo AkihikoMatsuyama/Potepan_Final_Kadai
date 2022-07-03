@@ -20,7 +20,7 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
       expect(product2.relation_products).not_to include product2
     end
 
-    it "関連商品が最大4つになること" do
+    it "関連商品が最大で4つになること" do
       expect(product.relation_products.count).to eq 5
       expect(product.relation_products.limit(4).count).to be_between(1, 4).inclusive
       expect(product2.relation_products.count).to eq 2
