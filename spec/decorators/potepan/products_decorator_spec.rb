@@ -8,18 +8,18 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
     let(:taxon4) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon, taxon2]) }
     let(:product2) { create(:product, taxons: [taxon3, taxon4]) }
-    let!(:related_product) { create_list(:product, 5, taxons: [taxon, taxon2]) }
-    let!(:related_product2) { create_list(:product, 2, taxons: [taxon3, taxon4]) }
+    let!(:related_products) { create_list(:product, 5, taxons: [taxon, taxon2]) }
+    let!(:related_products2) { create_list(:product, 2, taxons: [taxon3, taxon4]) }
 
     it "関連商品が重複していないこと" do
-      expect(related_product.last.taxons).to eq product.taxons
-      expect(related_product2.last.taxons).to eq product2.taxons
+      expect(related_products.last.taxons).to eq product.taxons
+      expect(related_products2.last.taxons).to eq product2.taxons
       expect(product.relation_products).to eq product.relation_products.uniq
     end
 
     it "関連商品が自分自身の商品を含まないこと" do
-      expect(product.relation_products).not_to contain_exactly(product)
-      expect(product2.relation_products).not_to contain_exactly(product2)
+      expect(product.relation_products).not_to include product
+      expect(product2.relation_products).not_to include product2
     end
 
     it "関連商品が最大4つになること" do
