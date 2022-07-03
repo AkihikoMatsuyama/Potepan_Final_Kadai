@@ -29,6 +29,14 @@ RSpec.feature "Potepan::Products", type: :feature do
     expect(page).to have_current_path potepan_category_path(taxon.id)
   end
 
+  scenario "商品名が表示されていること" do
+    expect(page).to have_selector 'h2', text: product.name
+  end
+
+  scenario "商品の価格が表示されていること" do
+    expect(page).to have_selector 'h3', text: product.display_price
+  end
+
   scenario "関連商品が最大で4つ表示されていること" do
     expect(page.all(".productBox").count).to be_between(1, 4).inclusive
   end
@@ -36,5 +44,13 @@ RSpec.feature "Potepan::Products", type: :feature do
   scenario "関連商品名をクリックすると、関連商品の詳細ページに遷移すること" do
     click_link related_products.first.name
     expect(page).to have_current_path potepan_product_path(related_products.first.id)
+  end
+
+  scenario "関連商品名が表示されていること" do
+    expect(page).to have_selector 'h5', text: related_products.first.name
+  end
+
+  scenario "関連商品の価格が表示されていること" do
+    expect(page).to have_selector 'h3', text: related_products.first.display_price
   end
 end
