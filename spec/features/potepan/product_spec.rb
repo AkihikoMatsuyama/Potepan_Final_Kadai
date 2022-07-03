@@ -21,7 +21,7 @@ RSpec.feature "Potepan::Products", type: :feature do
     expect(page).to have_current_path potepan_category_path(taxon.id)
   end
 
-  scenario "関連商品が最大4つ表示されていること" do
+  scenario "関連商品が最大で4つ表示されていること" do
     expect(page.all(".productBox").count).to be_between(1, 4).inclusive
   end
 
