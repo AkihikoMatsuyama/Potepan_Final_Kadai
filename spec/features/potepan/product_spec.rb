@@ -6,9 +6,13 @@ RSpec.feature "Potepan::Products", type: :feature do
   given(:taxon2) { create(:taxon, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
   given(:taxon3) { create(:taxon, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
   given(:taxon4) { create(:taxon, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+  given(:taxon5) { create(:taxon, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+  given(:taxon6) { create(:taxon, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
   given(:product) { create(:product, taxons: [taxon, taxon2]) }
   given(:product2) { create(:product, taxons: [taxon3, taxon4]) }
+  given(:product3) { create(:product, taxons: [taxon5, taxon6]) }
   given(:related_products) { create_list(:product, 5, taxons: [taxon, taxon2]) }
+  given(:related_products2) { create_list(:product, 3, taxons: [taxon5, taxon6]) }
   given(:image) { create(:image) }
 
   background do
@@ -16,12 +20,22 @@ RSpec.feature "Potepan::Products", type: :feature do
     related_products.each do |rel_product|
       rel_product.images << create(:image)
     end
+    related_products2.each_with_index do |rel_product, i|
+      if i.zero?
+        rel_product.images << create(:image)
+      end
+    end
     visit potepan_product_path(product.id)
   end
 
   scenario "関連商品が存在しない場合、関連商品のCSSのproductBoxが表示されないこと" do
     visit potepan_product_path(product2.id)
     expect(page.all(".productBox").count).to eq 0
+  end
+
+  scenario "関連商品の画像が存在しない場合、products-01.jpgが表示されること" do
+    visit potepan_product_path(product3.id)
+    expect(page).to have_selector("img[src^='/assets/img/products/products-01']")
   end
 
   scenario "一覧ページへ戻るをクリックすると、商品が属しているtaxonに遷移すること" do
@@ -38,7 +52,7 @@ RSpec.feature "Potepan::Products", type: :feature do
   end
 
   scenario "関連商品が最大で4つ表示されていること" do
-    expect(page.all(".productBox").count).to be_between(1, 4).inclusive
+    expect(page.all(".productBox").count).to eq 4
   end
 
   scenario "関連商品名をクリックすると、関連商品の詳細ページに遷移すること" do
