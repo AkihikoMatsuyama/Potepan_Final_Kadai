@@ -8,7 +8,7 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
     let!(:related_products) { create_list(:product, 5, taxons: [taxon, taxon2]) }
 
     it "関連商品が重複していないこと" do
-      expect(product.relation_products).to eq product.relation_products.uniq
+      expect(related_products).not_to include product
     end
 
     it "関連商品が自分自身の商品を含まないこと" do
