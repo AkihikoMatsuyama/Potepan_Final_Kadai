@@ -12,7 +12,7 @@ RSpec.feature "Potepan::Products", type: :feature do
   given(:product2) { create(:product, taxons: [taxon3, taxon4]) }
   given(:product3) { create(:product, taxons: [taxon5, taxon6]) }
   given(:related_products) { create_list(:product, 5, taxons: [taxon, taxon2]) }
-  given(:related_products_one_image) { create_list(:product, 3, taxons: [taxon5, taxon6]) }
+  given(:related_products_one_image) { create_list(:product, 2, taxons: [taxon5, taxon6]) }
   given(:image) { create(:image) }
 
   feature "商品と商品関連が存在している場合" do
