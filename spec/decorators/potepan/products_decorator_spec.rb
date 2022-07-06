@@ -9,6 +9,7 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
 
     it "関連商品が重複していないこと" do
       expect(related_products).to eq related_products.uniq
+      expect(product.relation_products).to eq related_products.uniq
     end
 
     it "関連商品に絞り込めていること" do
@@ -17,6 +18,7 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
         not_to include product
       expect(Spree::Product.in_taxons(product.taxons).where.not(id: product.id).distinct).
         to eq related_products
+      expect(product.relation_products).to eq related_products
     end
 
     it "関連商品が自分自身の商品を含まないこと" do
