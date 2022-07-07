@@ -12,7 +12,7 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
       expect(subject).not_to include product
     end
 
-    it "関連商品の並び順が名前の照準になっていること" do
+    it "関連商品の並び順が名前の昇順になっていること" do
       product.name = 'ZET'
       product.reload
       expect(subject).to match subject.order(:name)
