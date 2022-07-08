@@ -5,17 +5,11 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
     subject { product.relation_products }
 
     let(:taxon_list) { create_list(:taxon, 2) }
-    let!(:product_list) { create_list(:product, 3, taxons: taxon_list) }
-    let!(:product) { product_list.first }
+    let(:product_list) { create_list(:product, 3, taxons: taxon_list) }
+    let(:product) { product_list.first }
 
     it "関連商品に絞り込めていること" do
       expect(subject).not_to include product
-    end
-
-    it "関連商品の並び順が名前の昇順になっていること" do
-      product.name = 'ZET'
-      product.reload
-      expect(subject).to match subject.order(:name)
     end
   end
 end
