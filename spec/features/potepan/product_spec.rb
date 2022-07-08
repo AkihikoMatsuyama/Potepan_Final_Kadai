@@ -64,12 +64,7 @@ RSpec.feature "Potepan::Products", type: :feature do
 
   feature "関連関連の画像が未登録の場合" do
     background do
-      related_products_one_image.each_with_index do |rel_product, i|
-        if i.zero?
-          rel_product.images << create(:image)
-          break
-        end
-      end
+      related_products_one_image.first.images << create(:image)
     end
 
     scenario "products-01.jpgが表示されること" do
