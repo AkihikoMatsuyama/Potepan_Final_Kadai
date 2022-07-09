@@ -5,7 +5,6 @@ module Potepan::ProductsDecorator
     Spree::Product.
       in_taxons(taxons).
       where.not(id: id).
-      distinct.
-      order(:name)
+      distinct
   end
 end
