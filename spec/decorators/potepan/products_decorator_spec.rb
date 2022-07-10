@@ -11,5 +11,13 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
     it "関連商品に絞り込めていること" do
       expect(subject).not_to include product
     end
+
+    it "in_taxons実行前は、関連商品の数は6になっていること" do
+      expect(subject.unscoped.in_taxons(taxon_list).count).to eq 6
+    end
+
+    it "distinct実行前は、関連商品が重複していないこと" do
+      expect(subject.unscoped.distinct).to eq product_list
+    end
   end
 end
