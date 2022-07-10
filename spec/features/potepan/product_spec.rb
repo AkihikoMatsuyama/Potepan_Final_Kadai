@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Potepan::Products", type: :feature do
   given(:taxonomy) { create(:taxonomy) }
-  given(:taxon_list) { create_list(:taxon, 2,taxonomy: taxonomy, parent_id: taxonomy.root.id) }
-  given(:taxon_list2) { create_list(:taxon, 2,taxonomy: taxonomy, parent_id: taxonomy.root.id) }
-  given(:taxon_list3) { create_list(:taxon, 2,taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+  given(:taxon_list) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+  given(:taxon_list2) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+  given(:taxon_list3) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
   given(:product) { create(:product, taxons: taxon_list) }
   given(:product2) { create(:product, taxons: taxon_list2) }
   given(:product3) { create(:product, taxons: taxon_list3) }
