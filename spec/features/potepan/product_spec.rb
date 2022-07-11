@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "Potepan::Products", type: :feature do
-  given(:taxonomy) { create(:taxonomy) }
-  given(:taxon_list) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
-  given(:taxon_list2) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
-  given(:taxon_list3) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
-  given(:product) { create(:product, taxons: taxon_list) }
-  given(:product2) { create(:product, taxons: taxon_list2) }
-  given(:product3) { create(:product, taxons: taxon_list3) }
-  given(:related_products) { create_list(:product, 5, taxons: taxon_list) }
-  given(:related_products_one_image) { create_list(:product, 2, taxons: taxon_list3) }
-  given(:image) { create(:image) }
-
   feature "商品と関連商品が存在している場合" do
+    given(:taxonomy) { create(:taxonomy) }
+    given(:taxon_list) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+    given(:product) { create(:product, taxons: taxon_list) }
+    given(:related_products) { create_list(:product, 5, taxons: taxon_list) }
+    given(:image) { create(:image) }
+
     background do
       product.images << image
       related_products.each do |rel_product|
@@ -53,6 +48,10 @@ RSpec.feature "Potepan::Products", type: :feature do
   end
 
   feature "関連商品が存在しない場合" do
+    given(:taxonomy) { create(:taxonomy) }
+    given(:taxon_list2) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+    given(:product2) { create(:product, taxons: taxon_list2) }
+
     scenario "関連商品のCSSのproductBoxが表示されないこと" do
       visit potepan_product_path(product2.id)
       expect(page.all(".productBox").count).to eq 0
@@ -60,6 +59,12 @@ RSpec.feature "Potepan::Products", type: :feature do
   end
 
   feature "関連関連の画像が未登録の場合" do
+    given(:taxonomy) { create(:taxonomy) }
+    given(:taxon_list3) { create_list(:taxon, 2, taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+    given(:product3) { create(:product, taxons: taxon_list3) }
+    given(:related_products_one_image) { create_list(:product, 2, taxons: taxon_list3) }
+    given(:image) { create(:image) }
+
     background do
       related_products_one_image.first.images << create(:image)
     end
