@@ -11,9 +11,5 @@ RSpec.describe Potepan::ProductsDecorator, type: :model do
     it "関連商品に絞り込めていること" do
       expect(subject).to match_array [product_list.second, product_list.third]
     end
-
-    it "メソッドが機能していること" do
-      expect(subject).to match_array Spree::Product.in_taxons(taxon_list).where.not(id: product.id).distinct
-    end
   end
 end
